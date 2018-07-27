@@ -6,9 +6,6 @@ node_js:
 services:
   - memcached
 
-before_install:
-  - npm install -g npm
-
 script:
   - npm test
   - npm run jshint

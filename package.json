@@ -63,10 +63,10 @@
   },
   "devDependencies": {
     "ejs": "0.7.x",
-    "jshint": "*",
+    "jshint": "^2.8.0",
     "memcaching": "^0.4.1",
-    "mocha": "*",
-    "should": "*",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
     "sinon": "^1.10.2"
   },
   "engines": {
