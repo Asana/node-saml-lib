@@ -214,6 +214,43 @@ describe( 'saml.js / ', function() {
         done();
       });
     });
+
+    it( 'assertion with non-ascii characters should pass', function( done ) {
+      var xml = '<?xml version="1.0" encoding="UTF-8"?><saml2p:Response xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol" Destination="https://localhost.asana.com:8180/-/saml/consume" ID="id3181271818744372093251829" InResponseTo="_2670cf0638bbcdc03f4b" IssueInstant="2019-03-13T18:33:33.152Z" Version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"><saml2:Issuer xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://www.okta.com/exkd4yki2pgL35ymN0h7</saml2:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference URI="#id3181271818744372093251829"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"><ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="xs"/></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>OkX0Ja1LZAXYzkSYQj+dVPSRu7ENzF8jgQyyqteOnQM=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>SCuaXhGc9P2OFKJxqKcgeOEDqQCTIjvMVpD9vc8OeHh/PKk9X5tw+PqlyDc3dHs30ISub5xL6L6ODM2+k+Veaqwcjj/fPulmOffIel3SiBEF8liiAjYi5m3fEGxPHZsW71xTyCJ8slltK7xTA7ka4/sTSJ1aEJyWaGRCPG0wc4ZotSuLikbVByZD/HGXtmlvA+kZM+BPnaPCMW8Rx1DcZKGmwXjlgIC6grzAFC/b90In3wXdE6uh+QNEZAQ/RbABIv96W1uMf4LsfSrOH33lunX1nYvskNEu6XMb066i5oC2BIy3UYy2x9KzPWbKjF3b3cjaY8p/2tvklLCRQ/BSwg==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIDpDCCAoygAwIBAgIGAWAjePfoMA0GCSqGSIb3DQEBCwUAMIGSMQswCQYDVQQGEwJVUzETMBEG' +
+      'A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU' +
+      'MBIGA1UECwwLU1NPUHJvdmlkZXIxEzARBgNVBAMMCmRldi03NjIyMzMxHDAaBgkqhkiG9w0BCQEW' +
+      'DWluZm9Ab2t0YS5jb20wHhcNMTcxMjA0MjEzOTE4WhcNMjcxMjA0MjE0MDE4WjCBkjELMAkGA1UE' +
+      'BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDTALBgNV' +
+      'BAoMBE9rdGExFDASBgNVBAsMC1NTT1Byb3ZpZGVyMRMwEQYDVQQDDApkZXYtNzYyMjMzMRwwGgYJ' +
+      'KoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA' +
+      'sYVTvB9eRc4+1XTccIr7z/11gFlndobtdPdSYqR8EEtWToKkbvzoDFof9fy2QAFXfej9MX/8s2EN' +
+      'oNBiJUoYIN+S1A5ssMQgCLhjrRL19FrAq5FBpmd8XGLQHIZN1HUhFGL1f64auhyNVNXQOPSEWcnA' +
+      'H/dy5vflHtFWAnemmXB5qAKi9jBmQSNfGrz4tR09ob+12hP3ToVOYosJsvMAgPDEbtp8QaC9h5Dc' +
+      'vxDMAwNTVvuVwS1zl7tpNWjsqeAkJUJrTQ78AECeLIwz6pDdre9ESuKF6h01iGlBkGAaz9xPv9FC' +
+      'gEdFUz7r33O6zRoF7kDWEUOBqFET2s6gT3Jv7wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAwCYU6' +
+      'mkGiQPLEZ9fBSNEV9ZRNLBnBexMpWj6xWDRWBK87KVxwqeGE5jyOPbNpObw1n1P16rqMM1JWnAGT' +
+      'lkutEnFOWyxznxKrytBP2ij/6JRmjxCNYGNcAvuzAz+y4ZvTQ1lbW7PfqkelKwMAUMgSQoVqo+Aw' +
+      'nCCyYea6ZH7Rb0BOP65JvUwey7aIxYrL00MCn4+9q8HWpnRIztR4iGTHf2rJewMKci32u++uuCs5' +
+      '9KkG9k5epJxKJPHSslbSZeIyNVOERe4puK+aFoa7g3NDc0hNA7YYRCdcVhj0OgKu3dZCN0t6nNiv' +
+      'b/4jWPzdIKM0qUMj8MuIC+OUmJzBWGRo</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature><saml2p:Status xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol"><saml2p:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/></saml2p:Status><saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" ID="id3181271819479811439534356" IssueInstant="2019-03-13T18:33:33.152Z" Version="2.0"><saml2:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://www.okta.com/exkd4yki2pgL35ymN0h7</saml2:Issuer><saml2:Subject><saml2:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">eng+sashimi@asana.com</saml2:NameID><saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"><saml2:SubjectConfirmationData InResponseTo="_2670cf0638bbcdc03f4b" NotOnOrAfter="2019-03-13T18:38:33.153Z" Recipient="https://localhost.asana.com:8180/-/saml/consume"/></saml2:SubjectConfirmation></saml2:Subject><saml2:Conditions NotBefore="2019-03-13T18:28:33.153Z" NotOnOrAfter="2019-03-13T18:38:33.153Z"><saml2:AudienceRestriction><saml2:Audience>https://localhost.asana.com:8180</saml2:Audience></saml2:AudienceRestriction></saml2:Conditions><saml2:AuthnStatement AuthnInstant="2019-03-13T18:33:32.728Z" SessionIndex="_2670cf0638bbcdc03f4b"><saml2:AuthnContext><saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml2:AuthnContextClassRef></saml2:AuthnContext></saml2:AuthnStatement><saml2:AttributeStatement><saml2:Attribute Name="lastName" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"><saml2:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Peña</saml2:AttributeValue></saml2:Attribute></saml2:AttributeStatement></saml2:Assertion></saml2p:Response>'
+      // ^^ last name attribute value is 'Peña'
+      var base64xml = new Buffer( xml ).toString('base64');
+
+      var container = { SAMLResponse: base64xml };
+      var samlConfig = {
+        entryPoint: 'https://dev-762233.oktapreview.com/app/asanadev762233_asanasand_1/exkd4yki2pgL35ymN0h7/sso/saml',
+        cert: 'MIIDpDCCAoygAwIBAgIGAWAjePfoMA0GCSqGSIb3DQEBCwUAMIGSMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxEzARBgNVBAMMCmRldi03NjIyMzMxHDAaBgkqhkiG9w0BCQEWDWluZm9Ab2t0YS5jb20wHhcNMTcxMjA0MjEzOTE4WhcNMjcxMjA0MjE0MDE4WjCBkjELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDTALBgNVBAoMBE9rdGExFDASBgNVBAsMC1NTT1Byb3ZpZGVyMRMwEQYDVQQDDApkZXYtNzYyMjMzMRwwGgYJKoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsYVTvB9eRc4+1XTccIr7z/11gFlndobtdPdSYqR8EEtWToKkbvzoDFof9fy2QAFXfej9MX/8s2ENoNBiJUoYIN+S1A5ssMQgCLhjrRL19FrAq5FBpmd8XGLQHIZN1HUhFGL1f64auhyNVNXQOPSEWcnAH/dy5vflHtFWAnemmXB5qAKi9jBmQSNfGrz4tR09ob+12hP3ToVOYosJsvMAgPDEbtp8QaC9h5DcvxDMAwNTVvuVwS1zl7tpNWjsqeAkJUJrTQ78AECeLIwz6pDdre9ESuKF6h01iGlBkGAaz9xPv9FCgEdFUz7r33O6zRoF7kDWEUOBqFET2s6gT3Jv7wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAwCYU6mkGiQPLEZ9fBSNEV9ZRNLBnBexMpWj6xWDRWBK87KVxwqeGE5jyOPbNpObw1n1P16rqMM1JWnAGTlkutEnFOWyxznxKrytBP2ij/6JRmjxCNYGNcAvuzAz+y4ZvTQ1lbW7PfqkelKwMAUMgSQoVqo+AwnCCyYea6ZH7Rb0BOP65JvUwey7aIxYrL00MCn4+9q8HWpnRIztR4iGTHf2rJewMKci32u++uuCs59KkG9k5epJxKJPHSslbSZeIyNVOERe4puK+aFoa7g3NDc0hNA7YYRCdcVhj0OgKu3dZCN0t6nNivb/4jWPzdIKM0qUMj8MuIC+OUmJzBWGRo',
+        nowInMs: function() {
+          return new Date('2019-03-13T18:30:33.153Z').getTime();
+        }
+      };
+      var samlObj = new SAML( samlConfig );
+      samlObj.validatePostResponse( container, function( err, profile, logout ) {
+        should.not.exist( err );
+        profile.nameID.should.startWith( 'eng+sashimi@asana.com' );
+        done();
+      })
+    });
   });
 
   cacheProviderTests.runTestsWithAllCacheProviders();
