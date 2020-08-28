@@ -56,7 +56,7 @@
   "dependencies": {
     "q": "1.0.x",
     "xml-crypto": "Asana/xml-crypto#bcccb8067a73ddb78f0fe9edec2196fb9292b54c",
-    "xml-encryption": "~0.7",
+    "xml-encryption": "~0.13.0",
     "xml2js": "0.4.x",
     "xmlbuilder": "~2.2",
     "xmldom": "^0.1.19"
