@@ -54,7 +54,7 @@
   },
   "main": "./lib/saml.js",
   "dependencies": {
-    "q": "1.0.x",
+    "q": "1.5.1",
     "xml-crypto": "Asana/xml-crypto#bcccb8067a73ddb78f0fe9edec2196fb9292b54c",
     "xml-encryption": "~0.7",
     "xml2js": "0.4.x",
